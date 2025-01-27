@@ -18,8 +18,8 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
-assets/
-*/assets/
+addons
+*/addons/
 *.cfg
 *.import
 *.tmp
