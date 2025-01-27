@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://bfre8t20wfquv"]
+[gd_scene load_steps=13 format=4 uid="uid://bfre8t20wfquv"]
 
 [ext_resource type="Texture2D" uid="uid://b0ycoox4d1y8h" path="res://assets/tilemap.png" id="1_ksvrs"]
 [ext_resource type="Script" path="res://time_display.gd" id="2_cvo72"]
 [ext_resource type="Script" path="res://character_body_2d.gd" id="2_kyugr"]
+[ext_resource type="FontFile" uid="uid://brwfmmjgrhvsl" path="res://assets/monogram.ttf" id="4_x5um3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bqvu3"]
 texture = ExtResource("1_ksvrs")
@@ -99,9 +100,8 @@ sources/0 = SubResource("TileSetAtlasSource_bqvu3")
 atlas = ExtResource("1_ksvrs")
 region = Rect2(3, 69, 46, 15)
 
-[sub_resource type="Animation" id="Animation_u4nyb"]
-resource_name = "idle"
-length = 0.2
+[sub_resource type="Animation" id="Animation_gspwr"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -115,8 +115,9 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_gspwr"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_u4nyb"]
+resource_name = "idle"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -191,12 +192,14 @@ shape = SubResource("RectangleShape2D_w4jvb")
 script = ExtResource("2_cvo72")
 
 [node name="TimeLabel" type="Label" parent="TimeDisplay"]
-anchors_preset = -1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -125.0
-offset_top = 80.0
-offset_bottom = 23.0
+offset_top = 31.0
+offset_bottom = 69.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_x5um3")
+theme_override_font_sizes/font_size = 48
 text = "TIME"
