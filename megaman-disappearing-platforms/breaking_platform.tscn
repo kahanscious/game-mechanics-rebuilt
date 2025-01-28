@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjmidqi0e0qwp"]
+
+[ext_resource type="Texture2D" uid="uid://bf1kv1tiq1x8y" path="res://assets/environment1/tileset.png" id="1_a32ni"]
+[ext_resource type="Script" path="res://breaking_platform.gd" id="1_ew010"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6y0vv"]
+atlas = ExtResource("1_a32ni")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0wvx"]
+size = Vector2(16, 16)
+
+[node name="BreakingPlatform" type="StaticBody2D"]
+script = ExtResource("1_ew010")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_6y0vv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n0wvx")
