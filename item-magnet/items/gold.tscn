@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://de700dj0loma7"]
+
+[ext_resource type="Texture2D" uid="uid://ls0ptkm7q5v1" path="res://assets/G_Idle_(NoShadow).png" id="1_hnvy1"]
+[ext_resource type="Script" path="res://items/gold.gd" id="1_kwy5b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvgbx"]
+radius = 20.0
+
+[node name="Gold" type="Area2D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_kwy5b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hnvy1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 12)
+shape = SubResource("CircleShape2D_cvgbx")

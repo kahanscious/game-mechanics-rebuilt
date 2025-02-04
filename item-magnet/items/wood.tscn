@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://2oly0rsp5avl"]
+
+[ext_resource type="Script" path="res://items/wood.gd" id="1_6pcrt"]
+[ext_resource type="Texture2D" uid="uid://bpdpltn8q5lc8" path="res://assets/W_Idle_(NoShadow).png" id="1_rm753"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_47fdf"]
+radius = 8.0
+height = 45.6399
+
+[node name="Wood" type="Area2D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_6pcrt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 21)
+rotation = 1.11697
+shape = SubResource("CapsuleShape2D_47fdf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rm753")

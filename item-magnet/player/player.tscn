@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=3 uid="uid://u7ymmd5qxt7l"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_5i1lu"]
+[ext_resource type="Texture2D" uid="uid://do04ojndfiub0" path="res://assets/Warrior_Purple.png" id="2_t80fg"]
+[ext_resource type="Script" path="res://player/collection_zone.gd" id="4_l4mww"]
+[ext_resource type="PackedScene" uid="uid://bkeoxhipnny6s" path="res://ui/ui.tscn" id="5_nqc6f"]
+
+[sub_resource type="Animation" id="Animation_tj81w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_667fu"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_v2cbj"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vt5k4"]
+_data = {
+"RESET": SubResource("Animation_tj81w"),
+"idle": SubResource("Animation_667fu"),
+"walk": SubResource("Animation_v2cbj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3k3e1"]
+size = Vector2(38, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ytoxo"]
+radius = 117.516
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57gbn"]
+radius = 30.2
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_5i1lu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("2_t80fg")
+hframes = 6
+vframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vt5k4")
+}
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3k3e1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MagnetZone" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetZone"]
+shape = SubResource("CircleShape2D_ytoxo")
+
+[node name="CollectionZone" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("4_l4mww")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionZone"]
+shape = SubResource("CircleShape2D_57gbn")
+debug_color = Color(0.497427, 0.429537, 1, 0.42)
+
+[node name="UI" parent="." instance=ExtResource("5_nqc6f")]
+
+[connection signal="area_entered" from="MagnetZone" to="." method="_on_magnet_zone_area_entered"]
+[connection signal="area_exited" from="MagnetZone" to="." method="_on_magnet_zone_area_exited"]
+[connection signal="area_entered" from="CollectionZone" to="." method="_on_collection_zone_area_entered"]
