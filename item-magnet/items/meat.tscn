@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://crlhc1c1tio7f"]
+
+[ext_resource type="Script" path="res://items/meat.gd" id="1_bqxaf"]
+[ext_resource type="Texture2D" uid="uid://b511jn1ra0e6j" path="res://assets/M_Idle_(NoShadow).png" id="1_lswf2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h4thw"]
+radius = 21.0238
+
+[node name="Meat" type="Area2D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_bqxaf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lswf2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 13)
+shape = SubResource("CircleShape2D_h4thw")
